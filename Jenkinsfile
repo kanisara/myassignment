@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'pip install -r app/requirements.txt'
-      }
+        sh 'pip install --user -r app/requirements.txt'
+         }
     }
     stage('test') {
       steps {
