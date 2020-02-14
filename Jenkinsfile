@@ -1,5 +1,7 @@
 pipeline {
   agent { docker { image 'python:2.7' } }
+  
+     
   stages {
     stage('build') {
       steps {
@@ -14,18 +16,15 @@ pipeline {
 		withEnv(["HOME=${env.WORKSPACE}"]) {
 					sh 'pip install --user -r app/requirements.txt'
 					sh 'python -m py_compile app/app.py '
+					sh 'pytest app/app_test.py'
+				post {
+				always {
+					junit 'test-reports/*.xml'
+							}
+					}    	
 				}
             }
     }
-    stage('test') {
-	   steps {
-        	sh 'pytest app/app_test.py'
-     		}
-      post {
-        always {
-          junit 'test-reports/*.xml'
-       		 }
-     	 }    
-    }
+   
   }
 }
