@@ -12,17 +12,14 @@ pipeline {
 		echo "JOB Name ${env.JOB_NAME}"
 		echo "JOB Name ${env.WORKSPACE}"
 		withEnv(["HOME=${env.WORKSPACE}"]) {
-			sh 'pip install --user -r app/requirements.txt'
-			sh 'python -m py_compile app/app.py '
-			}
-              }
+					sh 'pip install --user -r app/requirements.txt'
+					sh 'python -m py_compile app/app.py '
+				}
+            }
     }
     stage('test') {
-	    docker {
-                    image 'qnib/pytest'
-                }
-      steps {
-        sh 'py.test --verbose --junit-xml test-reports/results.xml app/app_test.py'
+	     steps {
+        sh 'python app/app_test.py'
       }
       post {
         always {
