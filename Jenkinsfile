@@ -3,7 +3,18 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh '/usr/bin/pip3 install --user -r app/requirements.txt'
+          echo "$HOME"
+					echo "GitHub BranhName ${env.BRANCH_NAME}"
+					echo "Jenkins Job Number ${env.BUILD_NUMBER}"
+					echo "Jenkins Node Name ${env.NODE_NAME}"
+					echo "Jenkins Home ${env.JENKINS_HOME}"
+					echo "Jenkins URL ${env.JENKINS_URL}"
+					echo "JOB Name ${env.JOB_NAME}"
+					echo "JOB Name ${env.WORKSPACE}"
+					
+					withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'pip install --user -r app/requirements.txt'
+					}
        
          }
     }
