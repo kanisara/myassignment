@@ -19,7 +19,7 @@ pipeline {
     }
     stage('test') {
       steps {
-        sh 'python app_test.py'
+        sh 'python app/app_test.py'
       }
       post {
         always {
