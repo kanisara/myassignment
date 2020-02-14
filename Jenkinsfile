@@ -24,7 +24,7 @@ pipeline {
                 	}
            	}
      steps {
-        	sh 'python app/app_test.py'
+        	sh 'py.test --verbose --junit-xml test-reports/results.xml app/app_test.py'
      	}
       post {
         always {
