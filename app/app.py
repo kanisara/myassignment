@@ -8,7 +8,7 @@ import redis
 from flask import Flask, redirect
 
 VERSION = "1.1.1"
-REDIS_ENDPOINT = environ.get("REDIS_ENDPOINT", "localhost")
+REDIS_ENDPOINT = environ.get("REDIS_ENDPOINT", "redis")
 REDIS_PORT = int(environ.get("REDIS_PORT", "6379"))
 
 
