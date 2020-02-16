@@ -21,7 +21,7 @@ pipeline {
 		withEnv(["HOME=${env.WORKSPACE}"]) {
 		sh 'echo $HOME '
 		sh 'pip install --user -r app/requirements.txt'
-		sh 'py.test --verbose --junit-xml test-reports/results.xml app/app_test.py' }
+		sh 'pytest -q app/app_test.py' }
             }
             post {
                 always {
