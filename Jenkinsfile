@@ -8,7 +8,6 @@ pipeline {
                 }
             }
             steps {
-		deleteDir()
 		sh 'python -m py_compile app/app.py'
             }
         }
