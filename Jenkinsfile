@@ -29,6 +29,14 @@ pipeline {
                 }
             }
         }
+		stage('Build Image')
+			{ 
+				sh "docker build -t myapp ."
+			}
+		stage('deployment to container')
+			{ 
+				sh "docker-compose up"
+			}
       
     }
 }
