@@ -20,9 +20,6 @@ pipeline {
             steps {
 		withEnv(["HOME=${env.WORKSPACE}"]) {
 		sh 'echo $HOME '
-		def mypath ='$HOME'
-		sh ' echo $mypath'
-		
 		sh 'pip install --user -r app/requirements.txt'
 		sh 'py.test --verbose --junit-xml test-reports/results.xml app/app_test.py' }
             }
