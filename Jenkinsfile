@@ -9,6 +9,7 @@ pipeline {
                 }
             }
             steps {
+		deleteDir()
 		echo "$HOME"
 		echo "GitHub BranhName ${env.BRANCH_NAME}"
 		echo "Jenkins Job Number ${env.BUILD_NUMBER}"
@@ -29,9 +30,8 @@ pipeline {
             }
             steps {
 		withEnv(["HOME=${env.WORKSPACE}"]) {
-	        sh ' echo $myworkspace '
-		sh 'pip install --user -r app/requirements.txt'
-		sh 'sudo py.test --verbose --junit-xml test-reports/results.xml app/app_test.py' }
+	        sh 'pip install --user -r app/requirements.txt'
+		sh 'py.test --verbose --junit-xml test-reports/results.xml app/app_test.py' }
             }
             post {
                 always {
