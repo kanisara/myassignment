@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-	   echo "$HOME"
+	   	echo "$HOME"
 		echo "GitHub BranhName ${env.BRANCH_NAME}"
 		echo "Jenkins Job Number ${env.BUILD_NUMBER}"
 		echo "Jenkins Node Name ${env.NODE_NAME}"
@@ -27,8 +27,8 @@ pipeline {
                 }
             }
             steps {
-			withEnv(["HOME=${env.WORKSPACE}"]) {
-				sh 'pip install --user -r app/requirements.txt'
+		withEnv(["HOME=${env.WORKSPACE}"]) {
+		sh 'pip install --user -r app/requirements.txt'
                 sh 'py.test --verbose --junit-xml test-reports/results.xml app/app_test.py' }
             }
             post {
