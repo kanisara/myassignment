@@ -1,6 +1,8 @@
 pipeline {
     agent none
     stages {
+	    
+	    echo "JOB Name ${env.WORKSPACE}"
 	   	
 		
         stage('Build') {
