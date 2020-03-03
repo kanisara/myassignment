@@ -24,7 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'myDocker'
-        repository: 'kanisara/app:1'
+        repository: 'kanisara/app'
         command: 'build'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
