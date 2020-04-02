@@ -12,6 +12,27 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
+- stage: Checkout
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - bash: echo "Build FirstJob"
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo "SourceBranchName  :" $(Build.SourceBranchName)
+    - bash: echo "SourcesDirectory  :" $(Build.SourcesDirectory)
+    - bash: echo "DefaultWorkingDirectory :" $(System.DefaultWorkingDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: echo "ArtifactStagingDirectory :" $(Build.ArtifactStagingDirectory)
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version 
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+
 - stage: Build
   displayName: Build image
   jobs:  
@@ -28,3 +49,4 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
+    
