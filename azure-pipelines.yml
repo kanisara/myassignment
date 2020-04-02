@@ -12,20 +12,6 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: checkout
-  displayName: checkout image
-  jobs:  
-  - job: checkout
-    displayName: checkout
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-      - task: SSH@0
-        inputs:
-          runOptions: 'commands'
-          commands: 'uname'
-          readyTimeout: '20000'
-
 - stage: Build
   displayName: Build image
   jobs:  
